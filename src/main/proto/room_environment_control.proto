@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package ds.service;
+
+option java_package = "ds.generated.service2";
+
+service RoomEnvironmentControlService {
+    rpc AdjustTemperature (stream TemperatureSetting) returns (StatusMessage);
+    rpc ControlLights (stream LightCommand) returns (StatusMessage);
+}
+
+message TemperatureSetting {
+    float temperature = 1;
+}
+
+message LightCommand {
+    bool light_on = 1;
+}
+
+message StatusMessage {
+    string status = 1;
+}

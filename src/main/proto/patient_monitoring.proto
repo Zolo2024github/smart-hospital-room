@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package ds.service;
+
+option java_package = "ds.generated.service1";
+
+service PatientMonitoringService {
+    rpc MonitorVitalSigns (RequestMessage) returns (ResponseMessage);
+    rpc AlertNurse (AlertRequestMessage) returns (AlertResponseMessage);
+}
+
+message RequestMessage {
+    string patient_id = 1;
+}
+
+message ResponseMessage {
+    int32 heart_rate = 1;
+    string blood_pressure = 2;
+}
+
+message AlertRequestMessage {
+    string alert_message = 1;
+    string patient_id = 2;
+}
+
+message AlertResponseMessage {
+    string status_message = 1;
+}

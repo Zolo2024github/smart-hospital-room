@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package ds.service;
+
+option java_package = "ds.generated.service3";
+
+service MedicationDispensingService {
+    rpc DispenseMedication (DispenseRequest) returns (stream DispensingStatus);
+    rpc CheckMedicationStock (stream MedicationRequest) returns (stream StockLevel);
+}
+
+message DispenseRequest {
+    int32 patient_id = 1;
+    string medication_id = 2;
+    int32 dosage = 3;
+}
+
+message DispensingStatus {
+    string status = 1;
+}
+
+message MedicationRequest {
+    string medication_id = 1;
+}
+
+message StockLevel {
+    string medication_id = 1;
+    int32 stock_level = 2;
+}
